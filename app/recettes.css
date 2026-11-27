@@ -381,10 +381,11 @@ button { cursor: pointer; }
 .grille-regions { margin-top: 1.5rem; }
 .region-decouverte { padding: clamp(.9rem, 2vw, 1.3rem); border: 1px solid var(--bordure); border-radius: .6rem; background: var(--blanc); }
 .region-decouverte h2 { font-size: clamp(1.6rem, 3vw, 2.25rem); }
-.index-escales { gap: .45rem .7rem; }
-.index-escales a { padding: .25rem .55rem; border: 1px solid var(--bordure); border-radius: 2rem; background: var(--blanc); font-size: .9rem; }
 .region-decouverte:target { border-color: var(--rouge); }
-.photo-escale { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: .35rem; margin-top: .8rem; }
+.photos-escale { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.5rem), 1fr)); gap: .65rem; margin-top: .8rem; }
+.photos-escale figure { min-width: 0; }
+.photo-escale { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: .35rem; }
+.photos-escale figcaption { margin-top: .3rem; color: var(--secondaire); font-size: .85rem; }
 .specialites-escale { margin-top: .7rem; padding-left: 1.15rem; list-style: disc; }
 .specialites-escale li + li { margin-top: .35rem; }
 .texte-escale { margin-top: .7rem; color: var(--secondaire); }
@@ -392,7 +393,6 @@ button { cursor: pointer; }
 .fiche-decouverte img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
 .fiche-decouverte > span { display: block; padding: .65rem .85rem; font-weight: 700; }
 .fiche-decouverte:hover > span { color: var(--rouge); text-decoration: underline; }
-.source-region { display: inline-block; margin-top: .8rem; font-size: .85rem; }
 .ajout-courses { margin-top: .85rem; }
 .grille-favoris { margin-top: .75rem; }
 .statut-favori a { color: var(--rouge); text-decoration: underline; }

@@ -1,6 +1,5 @@
-import { Texte, AttributsTraduits } from "@/app/components/langue";
+import { Texte, ImageTraduite } from "@/app/components/langue";
 import type { Metadata } from "next";
-import Image from "next/image";
 import { escales } from "../data/tour-tunisie";
 
 export const metadata: Metadata = {
@@ -21,7 +20,7 @@ export default function TourPage() {
               <div className="photos-escale">
                 {photos.map(({ image, description, legende }) => (
                   <figure key={image.src}>
-                    <AttributsTraduits><Image className="photo-escale" src={image} alt={description} sizes={photos.length > 1 ? "(max-width: 700px) 45vw, 17vw" : "(max-width: 700px) 90vw, 33vw"} /></AttributsTraduits>
+                    <ImageTraduite className="photo-escale" src={image} alt={description} sizes={photos.length > 1 ? "(max-width: 700px) 45vw, 17vw" : "(max-width: 700px) 90vw, 33vw"} />
                     {legende && <figcaption><Texte>{legende}</Texte></figcaption>}
                   </figure>
                 ))}

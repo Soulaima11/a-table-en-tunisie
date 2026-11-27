@@ -1,6 +1,7 @@
 "use client";
 
-import { cloneElement, createContext, useContext, useEffect, useSyncExternalStore, type ReactElement, type ReactNode } from "react";
+import Image, { type ImageProps } from "next/image";
+import { cloneElement, createContext, isValidElement, useContext, useEffect, useSyncExternalStore, type ComponentProps, type ReactNode } from "react";
 import { estLangue, langues, nomsLangues, type Langue } from "../lib/langues";
 import en from "../i18n/en.json";
 import ar from "../i18n/ar.json";
@@ -83,14 +84,24 @@ export function Texte({ children }: { children: ReactNode }) {
 
 const attributs = ["aria-label", "placeholder", "alt", "title"];
 
-export function AttributsTraduits({ children }: { children: ReactElement<Record<string, unknown>> }) {
+export function AttributsTraduits({ children }: { children: ReactNode }) {
   const langue = useLangue();
-  if (langue === "fr") return children;
+  if (langue === "fr" || !isValidElement<Record<string, unknown>>(children)) return children;
   const props = Object.fromEntries(attributs.flatMap((nom) => {
     const valeur = children.props[nom];
     return typeof valeur === "string" ? [[nom, traduire(langue, valeur)]] : [];
   }));
   return cloneElement(children, props);
+}
+
+export function NavigationTraduite({ "aria-label": label, ...props }: ComponentProps<"nav">) {
+  const langue = useLangue();
+  return <nav {...props} aria-label={label ? traduire(langue, label) : undefined} />;
+}
+
+export function ImageTraduite({ alt, ...props }: ImageProps) {
+  const langue = useLangue();
+  return <Image {...props} alt={traduire(langue, alt)} />;
 }
 
 export function SelecteurLangue() {

@@ -1,4 +1,4 @@
-import { Texte, AttributsTraduits, Duree } from "@/app/components/langue";
+import { Texte, ImageTraduite, Duree } from "@/app/components/langue";
 import Image from "next/image";
 import Link from "next/link";
 import drapeauTunisie from "../public/drapeau-tunisie.png";
@@ -28,7 +28,7 @@ export default function Home() {
         </div>
         {featured?.image && (
           <Link className="hero-plat" href={`/recettes/${featured.slug}`}>
-            <AttributsTraduits><Image src={featured.image} alt={featured.imageAlt ?? featured.title} sizes="(max-width: 760px) 92vw, 55vw" unoptimized preload /></AttributsTraduits>
+            <ImageTraduite src={featured.image} alt={featured.imageAlt ?? featured.title} sizes="(max-width: 760px) 92vw, 55vw" unoptimized preload />
             <span className="hero-legende"><Texte>{featured.title}</Texte> <span aria-hidden="true">↗</span></span>
           </Link>
         )}

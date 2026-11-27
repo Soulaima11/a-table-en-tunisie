@@ -1,6 +1,5 @@
-import { Texte, AttributsTraduits, Duree } from "@/app/components/langue";
+import { Texte, NavigationTraduite, ImageTraduite, Duree } from "@/app/components/langue";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BoutonFavori } from "../../components/bouton-favori";
@@ -44,15 +43,15 @@ export default async function RecettePage({ params }: Props) {
             <BoutonFavori slug={recette.slug} />
           </div>
           {recette.image && (
-            <AttributsTraduits><Image src={recette.image} alt={recette.imageAlt ?? recette.title} sizes="(max-width: 760px) 92vw, 50vw" unoptimized /></AttributsTraduits>
+            <ImageTraduite src={recette.image} alt={recette.imageAlt ?? recette.title} sizes="(max-width: 760px) 92vw, 50vw" unoptimized />
           )}
         </header>
-        <AttributsTraduits><nav className="sommaire-fiche" aria-label="Dans cette recette">
+        <NavigationTraduite className="sommaire-fiche" aria-label="Dans cette recette">
           <a href="#titre-ingredients"><Texte>Ingrédients</Texte></a>
           <a href="#titre-preparation"><Texte>Préparation</Texte></a>
           {recette.tip && <a href="#conseil-recette"><Texte>Conseil</Texte></a>}
           <ModeCuisine etapes={recette.steps} />
-        </nav></AttributsTraduits>
+        </NavigationTraduite>
         <div className="fiche-corps">
           <IngredientsRecette recette={recette} />
           <section aria-labelledby="titre-preparation">

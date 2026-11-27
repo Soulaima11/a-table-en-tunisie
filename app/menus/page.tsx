@@ -1,4 +1,4 @@
-import { Texte, AttributsTraduits } from "@/app/components/langue";
+import { Texte, NavigationTraduite } from "@/app/components/langue";
 import type { Metadata } from "next";
 import { AjoutCourses } from "../components/ajout-courses";
 import { FicheDecouverte } from "../components/fiche-decouverte";
@@ -11,9 +11,9 @@ export default function MenusPage() {
     <main id="contenu" className="conteneur page-outil">
       <h1><Texte>Menus pour toutes les occasions</Texte></h1>
       <p><Texte>Choisis un menu complet et ajoute ses ingrédients à ta liste de courses.</Texte></p>
-      <AttributsTraduits><nav className="sommaire-fiche" aria-label="Les menus">
+      <NavigationTraduite className="sommaire-fiche" aria-label="Les menus">
         {menus.map((menu) => <a href={`#${menu.id}`} key={menu.id}><Texte>{menu.titre}</Texte></a>)}
-      </nav></AttributsTraduits>
+      </NavigationTraduite>
       {menus.map((menu) => {
         const recettes = recettesPour(menu.recettes);
         return (

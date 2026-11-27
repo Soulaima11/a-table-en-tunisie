@@ -1,4 +1,4 @@
-import { Texte, AttributsTraduits, LangueProvider, SelecteurLangue } from "@/app/components/langue";
+import { Texte, NavigationTraduite, LangueProvider, SelecteurLangue } from "@/app/components/langue";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MenuCompte } from "./components/menu-compte";
@@ -21,7 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <header className="barre-site">
             <div className="conteneur barre-interieure">
               <Link href="/" className="marque"><Texte>À table</Texte>{" "}<em><Texte>en Tunisie</Texte></em></Link>
-              <AttributsTraduits><nav aria-label="Navigation principale">
+              <NavigationTraduite aria-label="Navigation principale">
                 <Link href="/#recettes"><Texte>Recettes</Texte></Link>
                 <Link href="/menus"><Texte>Menus</Texte></Link>
                 <Link href="/tour-de-tunisie"><Texte>Tour de Tunisie</Texte></Link>
@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 <Link href="/courses"><Texte>Mes courses</Texte></Link>
                 <Link href="/contact"><Texte>Contact</Texte></Link>
                 <MenuCompte />
-              </nav></AttributsTraduits>
+              </NavigationTraduite>
               <SelecteurLangue />
             </div>
           </header>

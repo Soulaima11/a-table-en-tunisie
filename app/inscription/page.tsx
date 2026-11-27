@@ -37,7 +37,22 @@ export default function InscriptionPage() {
     const form = event.currentTarget;
     const fields = new FormData(form);
     const email = String(fields.get("email")).trim();
+    const dateNaissance = String(fields.get("date_naissance") ?? "");
     const password = String(fields.get("password"));
+
+    const date = new Date(`${dateNaissance}T00:00:00Z`);
+    const maintenant = new Date();
+    const aujourdhui = Date.UTC(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate());
+    if (
+      !/^\d{4}-\d{2}-\d{2}$/.test(dateNaissance) ||
+      !Number.isFinite(date.getTime()) ||
+      date.toISOString().slice(0, 10) !== dateNaissance ||
+      date.getUTCFullYear() < 1 ||
+      date.getTime() > aujourdhui
+    ) {
+      setErreur("Indique une date de naissance valide qui n’est pas dans le futur.");
+      return;
+    }
 
     if (password !== fields.get("confirmation")) {
       setErreur("Les deux mots de passe doivent être identiques.");
@@ -50,7 +65,10 @@ export default function InscriptionPage() {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
-        options: { emailRedirectTo: new URL("/login", window.location.origin).href },
+        options: {
+          emailRedirectTo: new URL("/login", window.location.origin).href,
+          data: { date_naissance: dateNaissance },
+        },
       });
       if (error) {
         if (error.code === "user_already_exists" || error.code === "email_exists") {
@@ -94,6 +112,10 @@ export default function InscriptionPage() {
         <label>
           Adresse e-mail
           <input name="email" type="email" autoComplete="email" required />
+        </label>
+        <label>
+          Date de naissance
+          <input name="date_naissance" type="date" autoComplete="bday" required />
         </label>
         <label>
           Mot de passe

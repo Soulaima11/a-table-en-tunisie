@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import { getSupabase } from "../lib/supabase";
 import { avatarValide } from "../lib/avatar";
 import { useSessionUser } from "./session";
+import { MenuEntete } from "./menus-entete";
 
 export function MenuCompte() {
   const user = useSessionUser();
@@ -37,10 +38,10 @@ export function MenuCompte() {
 
   if (!user) {
     return (
-      <>
-        <Link className="lien-connexion" href="/login"><Texte>Connexion</Texte></Link>
-        <Link className="lien-inscription" href="/inscription"><Texte>Créer un compte</Texte></Link>
-      </>
+      <MenuEntete classe="menu-invite" libelle={<Texte>Mon compte</Texte>}>
+        <Link href="/login"><Texte>Connexion</Texte></Link>
+        <Link href="/inscription"><Texte>Créer un compte</Texte></Link>
+      </MenuEntete>
     );
   }
 
@@ -63,7 +64,7 @@ export function MenuCompte() {
           {avatarValide(user.user_metadata.avatar_profil) ?
             <Image src={user.user_metadata.avatar_profil} alt="" width={32} height={32} unoptimized /> :
             user.email?.charAt(0).toLocaleUpperCase("fr") || "?"}
-        </span><Texte>Mon compte</Texte><span className="chevron-compte" aria-hidden="true" />
+        </span><span className="libelle-compte"><Texte>Mon compte</Texte></span><span className="chevron-compte" aria-hidden="true" />
       </summary>
       <div className="menu-compte-panneau">
         <Link href="/compte" onClick={() => { if (menu.current) menu.current.open = false; }}><Texte>Voir mon compte</Texte></Link>

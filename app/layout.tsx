@@ -1,8 +1,8 @@
-import { Texte, NavigationTraduite, LangueProvider, SelecteurLangue } from "@/app/components/langue";
+import { Texte, NavigationTraduite, LangueProvider } from "@/app/components/langue";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MenuCompte } from "./components/menu-compte";
-import { SelecteurAffichage } from "./components/affichage";
+import { MenuOutils, MenuReglages } from "./components/menus-entete";
 import { SessionProvider } from "./components/session";
 import "./globals.css";
 import "./recettes.css";
@@ -26,14 +26,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 <Link href="/#recettes"><Texte>Recettes</Texte></Link>
                 <Link href="/menus"><Texte>Menus</Texte></Link>
                 <Link href="/tour-de-tunisie"><Texte>Tour de Tunisie</Texte></Link>
-                <Link href="/frigo"><Texte>Mon frigo</Texte></Link>
-                <Link href="/courses"><Texte>Mes courses</Texte></Link>
-                <Link href="/ingredients"><Texte>Guide de l’étranger</Texte></Link>
-                <Link href="/nutrition"><Texte>Nutrition</Texte></Link>
-                <Link href="/contact"><Texte>Contact</Texte></Link>
-                <MenuCompte />
+                <MenuOutils />
               </NavigationTraduite>
-              <div className="preferences-site"><SelecteurLangue /><SelecteurAffichage /></div>
+              <div className="preferences-site"><MenuCompte /><MenuReglages /></div>
             </div>
           </header>
           {children}

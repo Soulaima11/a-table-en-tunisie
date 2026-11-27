@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BoutonFavori } from "../../components/bouton-favori";
+import { RecetteConsultee } from "../../components/historique-recettes";
 import { IngredientsRecette } from "../../components/ingredients-recette";
 import { ModeCuisine } from "../../components/mode-cuisine";
 import { recettes } from "../../data/recettes";
@@ -28,6 +29,7 @@ export default async function RecettePage({ params }: Props) {
 
   return (
     <main id="contenu" className="conteneur fiche">
+      <RecetteConsultee slug={recette.slug} />
       <Link className="retour" href="/#recettes"><Texte>← Toutes les recettes</Texte></Link>
       <article>
         <header className={recette.image ? "fiche-entete" : "fiche-entete fiche-entete-texte"}>

@@ -428,3 +428,25 @@ button { cursor: pointer; }
   background: var(--papier);
   font: inherit;
 }
+
+.historique-recettes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: .75rem;
+  list-style: none;
+  padding: 0;
+}
+
+.historique-recettes a {
+  display: flex;
+  align-items: center;
+  min-height: 5.5rem;
+  gap: .75rem;
+  padding: .5rem;
+  border: 1px solid var(--ligne);
+  border-radius: .5rem;
+  background: var(--papier);
+}
+
+.historique-recettes img { border-radius: .25rem; object-fit: cover; }
+.historique-recettes strong { display: block; }

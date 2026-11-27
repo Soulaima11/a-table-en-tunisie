@@ -23,6 +23,7 @@ export default function CompteLayout({ children }: { children: ReactNode }) {
           <AttributsTraduits><nav className="onglets-compte" aria-label="Navigation du compte">
             <Link href="/compte" aria-current={path === "/compte" ? "page" : undefined}><Texte>Aperçu</Texte></Link>
             <Link href="/compte/favoris" aria-current={path === "/compte/favoris" ? "page" : undefined}><Texte>Favoris</Texte></Link>
+            <Link href="/compte/historique" aria-current={path === "/compte/historique" ? "page" : undefined}><Texte>Historique</Texte></Link>
             <Link href="/compte/proposer" aria-current={path === "/compte/proposer" ? "page" : undefined}><Texte>Proposer une recette</Texte></Link>
           </nav></AttributsTraduits>
           {children}

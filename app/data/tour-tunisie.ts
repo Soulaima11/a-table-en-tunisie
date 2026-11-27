@@ -1,14 +1,15 @@
 import type { StaticImageData } from "next/image";
 import bambalouni from "../../public/tour/bambalouni.webp";
 import borzgane from "../../public/tour/borzgane.webp";
-import charmoula from "../../public/tour/charmoula.webp";
 import chrihaKarmous from "../../public/tour/chriha-karmous.webp";
 import couscousMedenine from "../../public/tour/couscous-medenine.webp";
 import couscousPoulpe from "../../public/tour/couscous-poulpe.webp";
+import couscousPoissonSfax from "../../public/tour/couscous-poisson-sfax.webp";
 import garnGhzel from "../../public/tour/garn-ghzel.webp";
 import kaakWarka from "../../public/tour/kaak-warka.webp";
 import kaftejiKairouan from "../../public/tour/kafteji-kairouan.webp";
 import madmouja from "../../public/tour/madmouja.webp";
+import mlabesSfax from "../../public/tour/mlabes-sfax.webp";
 import makroudhKairouan from "../../public/tour/makroudh-kairouan.webp";
 import mtabga from "../../public/tour/mtabga.webp";
 import rouzJerbi from "../../public/tour/rouz-jerbi.webp";
@@ -41,9 +42,10 @@ export const escales: Escale[] = [
   { id: "sidi-bou-said", nom: "Sidi Bou Saïd", specialites: [
     "Bambalouni",
   ], photos: [{ image: bambalouni, description: "Deux bambalounis saupoudrés de sucre dans du papier." }] },
-  { id: "sfax", nom: "Sfax", specialites: [
-    "Charmoula sfaxienne", poisson, "Mlabes",
-  ], photos: [{ image: charmoula, description: "Charmoula sfaxienne dans une assiette, avec du pain et de la cannelle." }] },
+  { id: "sfax", nom: "Sfax", specialites: ["Mlabes", poisson], photos: [
+    { image: mlabesSfax, description: "Mlabes roses et blancs sur un plateau.", legende: "Mlabes" },
+    { image: couscousPoissonSfax, description: "Couscous au poisson avec des pois chiches et des piments verts.", legende: poisson },
+  ] },
   { id: "sousse", nom: "Sousse", specialites: [poisson, "Plats de fruits de mer"] },
   { id: "monastir", nom: "Monastir", specialites: ["Couscous au charkaw", "Poissons grillés"] },
   { id: "mahdia", nom: "Mahdia", specialites: [poisson, "Poissons et fruits de mer"] },

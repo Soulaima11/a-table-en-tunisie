@@ -418,3 +418,13 @@ button { cursor: pointer; }
 @media (max-width: 700px) {
   .cartes-decouverte, .grille-regions { grid-template-columns: 1fr; }
 }
+
+.selecteur-langue select {
+  max-width: 9rem;
+  padding: .35rem .5rem;
+  border: 1px solid var(--ligne);
+  border-radius: .35rem;
+  color: inherit;
+  background: var(--papier);
+  font: inherit;
+}

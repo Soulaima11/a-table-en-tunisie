@@ -1,5 +1,6 @@
 "use client";
 
+import { Texte } from "@/app/components/langue";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { useRecuperationMotDePasse, useSessionUser } from "../components/session";
@@ -84,43 +85,37 @@ export default function MotDePasseOubliePage() {
 
   return (
     <main id="contenu" className="conteneur page-formulaire">
-      <h1>{active ? "Nouveau mot de passe" : "Mot de passe oublié ?"}</h1>
+      <h1><Texte>{active ? "Nouveau mot de passe" : "Mot de passe oublié ?"}</Texte></h1>
       {active ? (
         <form className="formulaire" method="post" onSubmit={modifier}>
-          <label>
-            Nouveau mot de passe
-            <input name="password" type="password" autoComplete="new-password" minLength={minimumMotDePasse} required />
-            <small>Au moins {minimumMotDePasse} caractères.</small>
+          <label><Texte>Nouveau mot de passe</Texte><input name="password" type="password" autoComplete="new-password" minLength={minimumMotDePasse} required />
+            <small><Texte>Au moins</Texte>{" "}{minimumMotDePasse}{" "}<Texte>caractères.</Texte></small>
           </label>
-          <label>
-            Confirmer le nouveau mot de passe
-            <input name="confirmation" type="password" autoComplete="new-password" minLength={minimumMotDePasse} required />
+          <label><Texte>Confirmer le nouveau mot de passe</Texte><input name="confirmation" type="password" autoComplete="new-password" minLength={minimumMotDePasse} required />
           </label>
-          <button type="submit" disabled={pending}>{pending ? "Enregistrement…" : "Enregistrer mon mot de passe"}</button>
-          <p role="status">{erreur}</p>
+          <button type="submit" disabled={pending}><Texte>{pending ? "Enregistrement…" : "Enregistrer mon mot de passe"}</Texte></button>
+          <p role="status"><Texte>{erreur}</Texte></p>
         </form>
       ) : resultat ? (
         <section className="formulaire">
-          <p role="status">{resultat === "modifie"
+          <p role="status"><Texte>{resultat === "modifie"
             ? "Ton mot de passe a été modifié."
-            : "Si cette adresse est associée à un compte, tu recevras un lien de réinitialisation. Vérifie aussi tes courriers indésirables."}</p>
+            : "Si cette adresse est associée à un compte, tu recevras un lien de réinitialisation. Vérifie aussi tes courriers indésirables."}</Texte></p>
           <p className="lien-compte">
             {resultat === "modifie" && user
-              ? <Link href="/compte">Aller à mon compte</Link>
-              : <Link href="/login">Retour à la connexion</Link>}
+              ? <Link href="/compte"><Texte>Aller à mon compte</Texte></Link>
+              : <Link href="/login"><Texte>Retour à la connexion</Texte></Link>}
           </p>
-          {resultat === "envoye" && <button type="button" onClick={() => setResultat(null)}>Saisir une autre adresse</button>}
+          {resultat === "envoye" && <button type="button" onClick={() => setResultat(null)}><Texte>Saisir une autre adresse</Texte></button>}
         </section>
       ) : (
         <form className="formulaire" method="post" onSubmit={envoyer}>
-          <p>Indique ton adresse e-mail pour recevoir un lien de réinitialisation.</p>
-          <label>
-            Adresse e-mail
-            <input name="email" type="email" autoComplete="email" required />
+          <p><Texte>Indique ton adresse e-mail pour recevoir un lien de réinitialisation.</Texte></p>
+          <label><Texte>Adresse e-mail</Texte><input name="email" type="email" autoComplete="email" required />
           </label>
-          <button type="submit" disabled={pending}>{pending ? "Envoi…" : "Envoyer le lien"}</button>
-          <p role="status">{erreur}</p>
-          <p className="lien-compte"><Link href="/login">Retour à la connexion</Link></p>
+          <button type="submit" disabled={pending}><Texte>{pending ? "Envoi…" : "Envoyer le lien"}</Texte></button>
+          <p role="status"><Texte>{erreur}</Texte></p>
+          <p className="lien-compte"><Link href="/login"><Texte>Retour à la connexion</Texte></Link></p>
         </form>
       )}
     </main>

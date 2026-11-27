@@ -1,5 +1,6 @@
 "use client";
 
+import { Texte } from "@/app/components/langue";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent } from "react";
@@ -99,36 +100,28 @@ export default function InscriptionPage() {
   if (user !== null) {
     return (
       <main id="contenu" className="conteneur page-formulaire">
-        <h1>Créer un compte</h1>
-        <p role="status">{user ? "Ouverture de ton compte…" : "Vérification de la session…"}</p>
+        <h1><Texte>Créer un compte</Texte></h1>
+        <p role="status"><Texte>{user ? "Ouverture de ton compte…" : "Vérification de la session…"}</Texte></p>
       </main>
     );
   }
 
   return (
     <main id="contenu" className="conteneur page-formulaire">
-      <h1>Créer un compte</h1>
+      <h1><Texte>Créer un compte</Texte></h1>
       <form className="formulaire" method="post" onSubmit={inscrire}>
-        <label>
-          Adresse e-mail
-          <input name="email" type="email" autoComplete="email" required />
+        <label><Texte>Adresse e-mail</Texte><input name="email" type="email" autoComplete="email" required />
         </label>
-        <label>
-          Date de naissance
-          <input name="date_naissance" type="date" autoComplete="bday" required />
+        <label><Texte>Date de naissance</Texte><input name="date_naissance" type="date" autoComplete="bday" required />
         </label>
-        <label>
-          Mot de passe
-          <input name="password" type="password" autoComplete="new-password" minLength={minimumMotDePasse} aria-describedby="aide-mot-de-passe" required />
-          <small id="aide-mot-de-passe">Au moins {minimumMotDePasse} caractères.</small>
+        <label><Texte>Mot de passe</Texte><input name="password" type="password" autoComplete="new-password" minLength={minimumMotDePasse} aria-describedby="aide-mot-de-passe" required />
+          <small id="aide-mot-de-passe"><Texte>Au moins</Texte>{" "}{minimumMotDePasse}{" "}<Texte>caractères.</Texte></small>
         </label>
-        <label>
-          Confirmer le mot de passe
-          <input name="confirmation" type="password" autoComplete="new-password" minLength={minimumMotDePasse} required />
+        <label><Texte>Confirmer le mot de passe</Texte><input name="confirmation" type="password" autoComplete="new-password" minLength={minimumMotDePasse} required />
         </label>
-        <button type="submit" disabled={pending}>{pending ? "Inscription…" : "Créer mon compte"}</button>
-        <p role="status">{erreur}</p>
-        <p className="lien-compte">Déjà un compte ? <Link href="/login">Se connecter</Link></p>
+        <button type="submit" disabled={pending}><Texte>{pending ? "Inscription…" : "Créer mon compte"}</Texte></button>
+        <p role="status"><Texte>{erreur}</Texte></p>
+        <p className="lien-compte"><Texte>Déjà un compte ?</Texte>{" "}<Link href="/login"><Texte>Se connecter</Texte></Link></p>
       </form>
       <dialog
         ref={dialogue}
@@ -138,17 +131,17 @@ export default function InscriptionPage() {
         onClose={() => setResultat(null)}
       >
         <h2 id="titre-dialogue-compte">
-          {resultat === "compte-existant" ? "Tu as déjà un compte" : "Vérifie ta boîte e-mail"}
+          <Texte>{resultat === "compte-existant" ? "Tu as déjà un compte" : "Vérifie ta boîte e-mail"}</Texte>
         </h2>
         <p id="description-dialogue-compte">
-          {resultat === "compte-existant"
+          <Texte>{resultat === "compte-existant"
             ? "Cette adresse e-mail est déjà associée à un compte. Connecte-toi avec ton mot de passe."
-            : "Si tu reçois un lien de confirmation, ouvre-le pour terminer l’inscription. Si tu as déjà un compte, tu peux te connecter directement."}
+            : "Si tu reçois un lien de confirmation, ouvre-le pour terminer l’inscription. Si tu as déjà un compte, tu peux te connecter directement."}</Texte>
         </p>
         <div className="actions-dialogue">
-          <Link className="bouton" href="/login">Se connecter</Link>
+          <Link className="bouton" href="/login"><Texte>Se connecter</Texte></Link>
           <form method="dialog">
-            <button type="submit" className="lien-connexion">Fermer</button>
+            <button type="submit" className="lien-connexion"><Texte>Fermer</Texte></button>
           </form>
         </div>
       </dialog>

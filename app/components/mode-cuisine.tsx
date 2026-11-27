@@ -1,5 +1,6 @@
 "use client";
 
+import { Texte } from "@/app/components/langue";
 import { useEffect, useRef, useState } from "react";
 
 export function ModeCuisine({ etapes }: { etapes: string[] }) {
@@ -25,32 +26,30 @@ export function ModeCuisine({ etapes }: { etapes: string[] }) {
 
   return (
     <>
-      <button className="bouton-favori" type="button" onClick={() => dialogue.current?.showModal()}>Ouvrir le mode cuisine</button>
+      <button className="bouton-favori" type="button" onClick={() => dialogue.current?.showModal()}><Texte>Ouvrir le mode cuisine</Texte></button>
       <dialog ref={dialogue} className="dialogue-compte mode-cuisine" aria-labelledby="titre-mode-cuisine" onClose={() => {
         setEcheance(null);
         setTermine(false);
       }}>
-        <h2 id="titre-mode-cuisine">Mode cuisine</h2>
-        <p className="surtitre">Étape {index + 1} sur {etapes.length}</p>
-        <p className="etape-cuisine" aria-live="polite">{etapes[index]}</p>
+        <h2 id="titre-mode-cuisine"><Texte>Mode cuisine</Texte></h2>
+        <p className="surtitre"><Texte>Étape</Texte>{" "}{index + 1}{" "}<Texte>sur</Texte>{" "}{etapes.length}</p>
+        <p className="etape-cuisine" aria-live="polite"><Texte>{etapes[index]}</Texte></p>
         <div className="actions-dialogue">
-          <button type="button" className="bouton-favori" disabled={index === 0} onClick={() => setIndex(index - 1)}>Précédente</button>
-          <button type="button" className="bouton-favori" disabled={index === etapes.length - 1} onClick={() => setIndex(index + 1)}>Suivante</button>
+          <button type="button" className="bouton-favori" disabled={index === 0} onClick={() => setIndex(index - 1)}><Texte>Précédente</Texte></button>
+          <button type="button" className="bouton-favori" disabled={index === etapes.length - 1} onClick={() => setIndex(index + 1)}><Texte>Suivante</Texte></button>
         </div>
         <div className="minuteur-cuisine">
-          <label>Minuteur
-            <input type="number" min={1} max={180} step={1} value={minutes || ""} onChange={(event) => setMinutes(Number(event.target.value))} /> min
-          </label>
+          <label><Texte>Minuteur</Texte><input type="number" min={1} max={180} step={1} value={minutes || ""} onChange={(event) => setMinutes(Number(event.target.value))} />{" "}<Texte>min</Texte></label>
           <button type="button" className="bouton-favori" disabled={!Number.isInteger(minutes) || minutes < 1 || minutes > 180} onClick={() => {
             setRestant(minutes * 60);
             setEcheance(Date.now() + minutes * 60000);
             setTermine(false);
-          }}>{echeance ? "Relancer" : "Démarrer"}</button>
-          {echeance && <button type="button" className="bouton-favori" onClick={() => { setEcheance(null); setRestant(0); }}>Arrêter</button>}
+          }}><Texte>{echeance ? "Relancer" : "Démarrer"}</Texte></button>
+          {echeance && <button type="button" className="bouton-favori" onClick={() => { setEcheance(null); setRestant(0); }}><Texte>Arrêter</Texte></button>}
           {echeance !== null ? <span role="timer">{Math.floor(restant / 60)}:{String(restant % 60).padStart(2, "0")}</span> : null}
-          <span role="status">{termine ? "Minuteur terminé." : ""}</span>
+          <span role="status"><Texte>{termine ? "Minuteur terminé." : ""}</Texte></span>
         </div>
-        <form method="dialog" className="actions-dialogue"><button type="submit" className="lien-connexion">Fermer</button></form>
+        <form method="dialog" className="actions-dialogue"><button type="submit" className="lien-connexion"><Texte>Fermer</Texte></button></form>
       </dialog>
     </>
   );

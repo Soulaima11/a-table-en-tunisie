@@ -1,5 +1,6 @@
 "use client";
 
+import { Texte } from "@/app/components/langue";
 import { useState, type FormEvent } from "react";
 import { useSessionUser } from "../../components/session";
 import { getSupabase } from "../../lib/supabase";
@@ -45,17 +46,17 @@ export default function ProposerPage() {
 
   return (
     <section className="proposition-recette">
-      <h2>Proposer une recette de famille</h2>
-      <p>Ta recette sera relue avant une éventuelle publication dans le carnet.</p>
-      {envoye ? <p role="status">Merci, ta recette a été envoyée pour relecture.</p> : (
+      <h2><Texte>Proposer une recette de famille</Texte></h2>
+      <p><Texte>Ta recette sera relue avant une éventuelle publication dans le carnet.</Texte></p>
+      {envoye ? <p role="status"><Texte>Merci, ta recette a été envoyée pour relecture.</Texte></p> : (
         <form className="formulaire" method="post" onSubmit={envoyer}>
-          <label>Ton nom<input name="nom" autoComplete="name" maxLength={100} required /></label>
-          <label>Nom du plat<input name="titre" maxLength={100} required /></label>
-          <label>Région (facultatif)<input name="region" maxLength={80} /></label>
-          <label>Ingrédients et quantités<textarea name="ingredients" rows={5} maxLength={900} required /></label>
-          <label>Étapes de préparation<textarea name="preparation" rows={6} maxLength={1700} required /></label>
-          <button type="submit" disabled={pending || !user?.email}>{pending ? "Envoi…" : "Envoyer pour relecture"}</button>
-          <p role="status">{message}</p>
+          <label><Texte>Ton nom</Texte><input name="nom" autoComplete="name" maxLength={100} required /></label>
+          <label><Texte>Nom du plat</Texte><input name="titre" maxLength={100} required /></label>
+          <label><Texte>Région (facultatif)</Texte><input name="region" maxLength={80} /></label>
+          <label><Texte>Ingrédients et quantités</Texte><textarea name="ingredients" rows={5} maxLength={900} required /></label>
+          <label><Texte>Étapes de préparation</Texte><textarea name="preparation" rows={6} maxLength={1700} required /></label>
+          <button type="submit" disabled={pending || !user?.email}><Texte>{pending ? "Envoi…" : "Envoyer pour relecture"}</Texte></button>
+          <p role="status"><Texte>{message}</Texte></p>
         </form>
       )}
     </section>

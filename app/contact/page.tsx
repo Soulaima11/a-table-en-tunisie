@@ -1,5 +1,6 @@
 "use client";
 
+import { Texte } from "@/app/components/langue";
 import { useState, type FormEvent } from "react";
 import { getSupabase } from "../lib/supabase";
 
@@ -44,26 +45,20 @@ export default function ContactPage() {
 
   return (
     <main id="contenu" className="conteneur page-formulaire">
-      <h1>Contact</h1>
+      <h1><Texte>Contact</Texte></h1>
       <form
         className="formulaire"
         method="post"
         onSubmit={envoyer}
       >
-        <label>
-          Votre nom
-          <input name="nom" autoComplete="name" maxLength={100} required />
+        <label><Texte>Votre nom</Texte><input name="nom" autoComplete="name" maxLength={100} required />
         </label>
-        <label>
-          Votre adresse e-mail
-          <input name="email" type="email" autoComplete="email" maxLength={254} required />
+        <label><Texte>Votre adresse e-mail</Texte><input name="email" type="email" autoComplete="email" maxLength={254} required />
         </label>
-        <label>
-          Votre message
-          <textarea name="message" rows={6} maxLength={3000} required />
+        <label><Texte>Votre message</Texte><textarea name="message" rows={6} maxLength={3000} required />
         </label>
-        <button type="submit" disabled={pending}>{pending ? "Envoi…" : "Envoyer le message"}</button>
-        <div role="status">{message}</div>
+        <button type="submit" disabled={pending}><Texte>{pending ? "Envoi…" : "Envoyer le message"}</Texte></button>
+        <div role="status"><Texte>{message}</Texte></div>
       </form>
     </main>
   );

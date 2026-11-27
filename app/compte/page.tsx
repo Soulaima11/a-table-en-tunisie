@@ -1,5 +1,6 @@
 "use client";
 
+import { Texte } from "@/app/components/langue";
 import Image from "next/image";
 import Link from "next/link";
 import couscous from "../../public/recettes/couscous.png";
@@ -12,12 +13,12 @@ export default function ComptePage() {
   return (
     <div className="carte-compte">
       <div className="carte-compte-contenu">
-        <h2>À table !</h2>
-        <p>Retrouve ton carnet de recettes tunisiennes et choisis ton prochain plat.</p>
-        <Link href="/#recettes" className="bouton">Voir les recettes <span aria-hidden="true">↗</span></Link>
+        <h2><Texte>À table !</Texte></h2>
+        <p><Texte>Retrouve ton carnet de recettes tunisiennes et choisis ton prochain plat.</Texte></p>
+        <Link href="/#recettes" className="bouton"><Texte>Voir les recettes</Texte>{" "}<span aria-hidden="true">↗</span></Link>
         <dl className="coordonnees-compte">
-          <dt>Adresse e-mail</dt>
-          <dd>{user.email || "Adresse indisponible"}</dd>
+          <dt><Texte>Adresse e-mail</Texte></dt>
+          <dd><Texte>{user.email || "Adresse indisponible"}</Texte></dd>
         </dl>
       </div>
       <Image src={couscous} alt="" sizes="(max-width: 760px) 92vw, 42vw" unoptimized />

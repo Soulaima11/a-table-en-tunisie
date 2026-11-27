@@ -1,3 +1,4 @@
+import { Texte, AttributsTraduits } from "@/app/components/langue";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { escales } from "../data/tour-tunisie";
@@ -10,26 +11,26 @@ export const metadata: Metadata = {
 export default function TourPage() {
   return (
     <main id="contenu" className="conteneur page-outil">
-      <h1>Tour de Tunisie en recettes</h1>
-      <p>{escales.length} escales culinaires, du makroudh de Kairouan au couscous au poulpe de Kerkennah.</p>
+      <h1><Texte>Tour de Tunisie en recettes</Texte></h1>
+      <p>{escales.length}{" "}<Texte>escales culinaires, du makroudh de Kairouan au couscous au poulpe de Kerkennah.</Texte></p>
       <div className="grille-regions">
         {escales.map(({ id, nom, specialites, photos, texte }) => (
           <section className="region-decouverte" id={id} key={id} aria-labelledby={`escale-${id}`}>
-            <h2 id={`escale-${id}`}>{nom}</h2>
+            <h2 id={`escale-${id}`}><Texte>{nom}</Texte></h2>
             {photos && (
               <div className="photos-escale">
                 {photos.map(({ image, description, legende }) => (
                   <figure key={image.src}>
-                    <Image className="photo-escale" src={image} alt={description} sizes={photos.length > 1 ? "(max-width: 700px) 45vw, 17vw" : "(max-width: 700px) 90vw, 33vw"} />
-                    {legende && <figcaption>{legende}</figcaption>}
+                    <AttributsTraduits><Image className="photo-escale" src={image} alt={description} sizes={photos.length > 1 ? "(max-width: 700px) 45vw, 17vw" : "(max-width: 700px) 90vw, 33vw"} /></AttributsTraduits>
+                    {legende && <figcaption><Texte>{legende}</Texte></figcaption>}
                   </figure>
                 ))}
               </div>
             )}
             <ul className="specialites-escale">
-              {specialites.map((specialite) => <li key={specialite}>{specialite}</li>)}
+              {specialites.map((specialite) => <li key={specialite}><Texte>{specialite}</Texte></li>)}
             </ul>
-            {texte && <p className="texte-escale">{texte}</p>}
+            {texte && <p className="texte-escale"><Texte>{texte}</Texte></p>}
           </section>
         ))}
       </div>

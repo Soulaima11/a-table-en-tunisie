@@ -1,8 +1,9 @@
+import { Texte, AttributsTraduits, Duree } from "@/app/components/langue";
 import Image from "next/image";
 import Link from "next/link";
 import drapeauTunisie from "../public/drapeau-tunisie.png";
 import { Catalogue } from "./components/catalogue";
-import { formatDuree, recettes } from "./data/recettes";
+import { recettes } from "./data/recettes";
 
 const menuTunisien = ["mechouia", "riz-djerbien", "makroud"];
 
@@ -17,20 +18,18 @@ export default function Home() {
       <section className="hero conteneur" aria-labelledby="titre-accueil">
         <div className="hero-texte">
           <p className="surtitre hero-origine">
-            <Image src={drapeauTunisie} alt="" width={42} height={28} unoptimized />
-            Recettes tunisiennes
-          </p>
-          <h1 id="titre-accueil">À table en <em>Tunisie</em></h1>
-          <p><strong>Les plats tunisiens, ça te tente&nbsp;?</strong> Teste une recette à la maison, de la brik croustillante aux makrouds au miel.</p>
+            <Image src={drapeauTunisie} alt="" width={42} height={28} unoptimized /><Texte>Recettes tunisiennes</Texte></p>
+          <h1 id="titre-accueil"><Texte>À table en</Texte>{" "}<em><Texte>Tunisie</Texte></em></h1>
+          <p><strong><Texte>Les plats tunisiens, ça te tente ?</Texte></strong>{" "}<Texte>Teste une recette à la maison, de la brik croustillante aux makrouds au miel.</Texte></p>
           <div className="liens-accueil">
-            <Link className="bouton" href="#recettes">Choisir une recette <span aria-hidden="true">↓</span></Link>
-            <Link className="lien-editorial" href="#menu-tunisien">Voir le menu</Link>
+            <Link className="bouton" href="#recettes"><Texte>Choisir une recette</Texte>{" "}<span aria-hidden="true">↓</span></Link>
+            <Link className="lien-editorial" href="#menu-tunisien"><Texte>Voir le menu</Texte></Link>
           </div>
         </div>
         {featured?.image && (
           <Link className="hero-plat" href={`/recettes/${featured.slug}`}>
-            <Image src={featured.image} alt={featured.imageAlt ?? featured.title} sizes="(max-width: 760px) 92vw, 55vw" unoptimized preload />
-            <span className="hero-legende">{featured.title} <span aria-hidden="true">↗</span></span>
+            <AttributsTraduits><Image src={featured.image} alt={featured.imageAlt ?? featured.title} sizes="(max-width: 760px) 92vw, 55vw" unoptimized preload /></AttributsTraduits>
+            <span className="hero-legende"><Texte>{featured.title}</Texte> <span aria-hidden="true">↗</span></span>
           </Link>
         )}
       </section>
@@ -38,8 +37,8 @@ export default function Home() {
       <section className="menu-editorial" id="menu-tunisien" aria-labelledby="titre-menu">
         <div className="conteneur">
           <div className="introduction-menu">
-            <h2 id="titre-menu">Un menu tunisien à partager</h2>
-            <p>Commence par une salade grillée, sers le riz djerbien et termine avec des makrouds au miel.</p>
+            <h2 id="titre-menu"><Texte>Un menu tunisien à partager</Texte></h2>
+            <p><Texte>Commence par une salade grillée, sers le riz djerbien et termine avec des makrouds au miel.</Texte></p>
           </div>
           <ul className="grille-menu">
             {selection.map((recette) => (
@@ -48,8 +47,8 @@ export default function Home() {
                   {recette.image && (
                     <Image src={recette.image} alt="" sizes="(max-width: 620px) 92vw, 34vw" unoptimized />
                   )}
-                  <p className="surtitre">{recette.category} · {formatDuree(recette.minutes)}</p>
-                  <h3>{recette.title} <span aria-hidden="true">↗</span></h3>
+                  <p className="surtitre"><Texte>{recette.category}</Texte> · <Duree minutes={recette.minutes} /></p>
+                  <h3><Texte>{recette.title}</Texte> <span aria-hidden="true">↗</span></h3>
                 </Link>
               </li>
             ))}
@@ -59,7 +58,7 @@ export default function Home() {
 
       <section className="collection" id="recettes" aria-labelledby="titre-recettes">
         <div className="conteneur">
-          <h2 id="titre-recettes">Le carnet de recettes</h2>
+          <h2 id="titre-recettes"><Texte>Le carnet de recettes</Texte></h2>
           <Catalogue recettes={recettes} />
         </div>
       </section>

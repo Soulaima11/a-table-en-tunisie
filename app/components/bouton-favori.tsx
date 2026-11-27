@@ -1,5 +1,6 @@
 "use client";
 
+import { Texte } from "@/app/components/langue";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { favoris, modifierFavori } from "../lib/favoris";
@@ -7,7 +8,7 @@ import { useSessionUser } from "./session";
 
 export function BoutonFavori({ slug }: { slug: string }) {
   const user = useSessionUser();
-  if (!user) return user === null ? <Link className="bouton-favori" href="/login">♡ Se connecter pour ajouter aux favoris</Link> : null;
+  if (!user) return user === null ? <Link className="bouton-favori" href="/login"><Texte>♡ Se connecter pour ajouter aux favoris</Texte></Link> : null;
   return <FavoriConnecte key={user.id + ":" + slug} userId={user.id} slug={slug} />;
 }
 
@@ -50,9 +51,9 @@ function FavoriConnecte({ userId, slug }: { userId: string; slug: string }) {
     <div className="action-favori">
       <button type="button" className="bouton-favori" onClick={basculer} aria-pressed={enregistre ?? false} disabled={pending || enregistre === null}>
         <span aria-hidden="true">{enregistre ? "♥" : "♡"}</span>
-        {enregistre ? "Retirer des favoris" : "Ajouter aux favoris"}
+        <Texte>{enregistre ? "Retirer des favoris" : "Ajouter aux favoris"}</Texte>
       </button>
-      <span className="statut-favori" role="status">{message}</span>
+      <span className="statut-favori" role="status"><Texte>{message}</Texte></span>
     </div>
   );
 }

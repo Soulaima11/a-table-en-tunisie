@@ -1,5 +1,6 @@
 "use client";
 
+import { Texte, AttributsTraduits } from "@/app/components/langue";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -55,12 +56,12 @@ function ListeFavoris({ userId }: { userId: string }) {
 
   return (
     <section className="liste-favoris">
-      <h2>Mes recettes favorites</h2>
-      <p role="status">{message || (slugs === null ? "Chargement de tes favoris…" : "")}</p>
+      <h2><Texte>Mes recettes favorites</Texte></h2>
+      <p role="status"><Texte>{message || (slugs === null ? "Chargement de tes favoris…" : "")}</Texte></p>
       {liste?.length === 0 && (
         <div className="carte-compte-contenu favoris-vides">
-          <p>Tu n’as encore enregistré aucune recette.</p>
-          <Link className="bouton" href="/#recettes">Explorer les recettes</Link>
+          <p><Texte>Tu n’as encore enregistré aucune recette.</Texte></p>
+          <Link className="bouton" href="/#recettes"><Texte>Explorer les recettes</Texte></Link>
         </div>
       )}
       {liste && liste.length > 0 && (
@@ -71,11 +72,11 @@ function ListeFavoris({ userId }: { userId: string }) {
             <li key={recette.slug} className="favori-enregistre">
               <Link href={`/recettes/${recette.slug}`}>
                 {recette.image && <Image src={recette.image} alt="" width={96} height={72} unoptimized />}
-                <span>{recette.title}</span>
+                <span><Texte>{recette.title}</Texte></span>
               </Link>
-              <button type="button" className="bouton-favori" disabled={retrait !== null} onClick={() => retirer(recette.slug)} aria-label={`Retirer ${recette.title} des favoris`}>
-                {retrait === recette.slug ? "Retrait…" : "Retirer"}
-              </button>
+              <AttributsTraduits><button type="button" className="bouton-favori" disabled={retrait !== null} onClick={() => retirer(recette.slug)} aria-label={`Retirer ${recette.title} des favoris`}>
+                <Texte>{retrait === recette.slug ? "Retrait…" : "Retirer"}</Texte>
+              </button></AttributsTraduits>
             </li>
           ))}
         </ul>

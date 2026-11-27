@@ -1,5 +1,6 @@
 "use client";
 
+import { Texte, AttributsTraduits } from "@/app/components/langue";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
@@ -16,18 +17,18 @@ export default function CompteLayout({ children }: { children: ReactNode }) {
 
   return (
     <main id="contenu" className="conteneur espace-compte">
-      <h1>Mon compte</h1>
+      <h1><Texte>Mon compte</Texte></h1>
       {user ? (
         <>
-          <nav className="onglets-compte" aria-label="Navigation du compte">
-            <Link href="/compte" aria-current={path === "/compte" ? "page" : undefined}>Aperçu</Link>
-            <Link href="/compte/favoris" aria-current={path === "/compte/favoris" ? "page" : undefined}>Favoris</Link>
-            <Link href="/compte/proposer" aria-current={path === "/compte/proposer" ? "page" : undefined}>Proposer une recette</Link>
-          </nav>
+          <AttributsTraduits><nav className="onglets-compte" aria-label="Navigation du compte">
+            <Link href="/compte" aria-current={path === "/compte" ? "page" : undefined}><Texte>Aperçu</Texte></Link>
+            <Link href="/compte/favoris" aria-current={path === "/compte/favoris" ? "page" : undefined}><Texte>Favoris</Texte></Link>
+            <Link href="/compte/proposer" aria-current={path === "/compte/proposer" ? "page" : undefined}><Texte>Proposer une recette</Texte></Link>
+          </nav></AttributsTraduits>
           {children}
         </>
       ) : (
-        <p role="status">{user === undefined ? "Chargement de ton compte…" : "Redirection vers la connexion…"}</p>
+        <p role="status"><Texte>{user === undefined ? "Chargement de ton compte…" : "Redirection vers la connexion…"}</Texte></p>
       )}
     </main>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import { Texte } from "@/app/components/langue";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
@@ -53,23 +54,19 @@ export default function LoginPage() {
 
   return (
     <main id="contenu" className="conteneur page-formulaire">
-      <h1>Connexion</h1>
+      <h1><Texte>Connexion</Texte></h1>
       {user !== null ? (
-        <p role="status">{user ? "Ouverture de ton compte…" : "Vérification de la session…"}</p>
+        <p role="status"><Texte>{user ? "Ouverture de ton compte…" : "Vérification de la session…"}</Texte></p>
       ) : (
         <form className="formulaire" method="post" onSubmit={connect}>
-          {message && <p className="erreur-formulaire" role="alert">{message}</p>}
-          <label>
-            Votre adresse e-mail
-            <input name="email" type="email" autoComplete="username" required />
+          {message && <p className="erreur-formulaire" role="alert"><Texte>{message}</Texte></p>}
+          <label><Texte>Votre adresse e-mail</Texte><input name="email" type="email" autoComplete="username" required />
           </label>
-          <label>
-            Votre mot de passe
-            <input name="password" type="password" autoComplete="current-password" required />
+          <label><Texte>Votre mot de passe</Texte><input name="password" type="password" autoComplete="current-password" required />
           </label>
-          <p className="lien-compte"><Link href="/mot-de-passe-oublie">Mot de passe oublié ?</Link></p>
-          <button type="submit" disabled={pending}>{pending ? "Connexion…" : "Se connecter"}</button>
-          <p className="lien-compte">Première visite ? <Link href="/inscription">Créer un compte</Link></p>
+          <p className="lien-compte"><Link href="/mot-de-passe-oublie"><Texte>Mot de passe oublié ?</Texte></Link></p>
+          <button type="submit" disabled={pending}><Texte>{pending ? "Connexion…" : "Se connecter"}</Texte></button>
+          <p className="lien-compte"><Texte>Première visite ?</Texte>{" "}<Link href="/inscription"><Texte>Créer un compte</Texte></Link></p>
         </form>
       )}
     </main>

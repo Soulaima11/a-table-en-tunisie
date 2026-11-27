@@ -1,3 +1,4 @@
+import { Texte, AttributsTraduits, LangueProvider, SelecteurLangue } from "@/app/components/langue";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MenuCompte } from "./components/menu-compte";
@@ -15,28 +16,31 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="fr">
       <body>
         <SessionProvider>
-          <a className="lien-evitement" href="#contenu">Aller au contenu</a>
+          <LangueProvider>
+          <a className="lien-evitement" href="#contenu"><Texte>Aller au contenu</Texte></a>
           <header className="barre-site">
             <div className="conteneur barre-interieure">
-              <Link href="/" className="marque">À table <em>en Tunisie</em></Link>
-              <nav aria-label="Navigation principale">
-                <Link href="/#recettes">Recettes</Link>
-                <Link href="/menus">Menus</Link>
-                <Link href="/tour-de-tunisie">Tour de Tunisie</Link>
-                <Link href="/frigo">Mon frigo</Link>
-                <Link href="/courses">Mes courses</Link>
-                <Link href="/contact">Contact</Link>
+              <Link href="/" className="marque"><Texte>À table</Texte>{" "}<em><Texte>en Tunisie</Texte></em></Link>
+              <AttributsTraduits><nav aria-label="Navigation principale">
+                <Link href="/#recettes"><Texte>Recettes</Texte></Link>
+                <Link href="/menus"><Texte>Menus</Texte></Link>
+                <Link href="/tour-de-tunisie"><Texte>Tour de Tunisie</Texte></Link>
+                <Link href="/frigo"><Texte>Mon frigo</Texte></Link>
+                <Link href="/courses"><Texte>Mes courses</Texte></Link>
+                <Link href="/contact"><Texte>Contact</Texte></Link>
                 <MenuCompte />
-              </nav>
+                <SelecteurLangue />
+              </nav></AttributsTraduits>
             </div>
           </header>
           {children}
           <footer className="pied-site">
             <div className="conteneur barre-interieure">
-              <Link href="/" className="marque">À table <em>en Tunisie</em></Link>
-              <Link href="/#recettes">Toutes les recettes</Link>
+              <Link href="/" className="marque"><Texte>À table</Texte>{" "}<em><Texte>en Tunisie</Texte></em></Link>
+              <Link href="/#recettes"><Texte>Toutes les recettes</Texte></Link>
             </div>
           </footer>
+          </LangueProvider>
         </SessionProvider>
       </body>
     </html>

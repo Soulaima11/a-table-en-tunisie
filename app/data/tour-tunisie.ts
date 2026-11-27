@@ -22,18 +22,19 @@ import painSableKebili from "../../public/tour/pain-sable-kebili.webp";
 import rouzJerbi from "../../public/tour/rouz-jerbi.webp";
 import sandwichLablabi from "../../public/tour/sandwich-lablabi.webp";
 
+type PhotoEscale = { image: StaticImageData; description: string; legende?: string };
+
 type Escale = {
   id: string;
   nom: string;
   specialites: string[];
   texte?: string;
-  photos?: { image: StaticImageData; description: string; legende?: string }[];
+  photos: [PhotoEscale, ...PhotoEscale[]];
 };
 
 const poisson = "Couscous au poisson";
 const lablabi = "Lablabi";
 const mtabgaSpecialite = "Mtabga";
-const couscousAgneau = "Couscous à l’agneau";
 
 export const escales: Escale[] = [
   { id: "kairouan", nom: "Kairouan", specialites: [
@@ -56,14 +57,10 @@ export const escales: Escale[] = [
     photos: [{ image: fruitsDeMerSousse, description: "Assiette de moules, de crevettes et de poulpe grillé." }] },
   { id: "monastir", nom: "Monastir", specialites: ["Couscous au charkaw"],
     photos: [{ image: couscousCharkawMonastir, description: "Couscous au charkaw garni de légumes dans un plat en terre cuite." }] },
-  { id: "mahdia", nom: "Mahdia", specialites: [poisson, "Poissons et fruits de mer"] },
   { id: "bizerte", nom: "Bizerte", specialites: [lablabi, "Sandwich lablabi"],
     photos: [{ image: sandwichLablabi, description: "Sandwich lablabi garni de pois chiches et de sardines." }] },
   { id: "nabeul", nom: "Nabeul", specialites: ["Harissa traditionnelle"],
     photos: [{ image: harissaNabeul, description: "Harissa rouge dans un bol et un bocal, avec des piments rouges." }] },
-  { id: "hammamet", nom: "Hammamet", specialites: [
-    "Plats de poisson", "Pâtisseries à la fleur d’oranger",
-  ] },
   { id: "zaghouan", nom: "Zaghouan", specialites: [
     "Kaâk warka",
   ], photos: [{ image: kaakWarka, description: "Kaâk warka en anneaux blancs sur un plateau." }],
@@ -75,15 +72,11 @@ export const escales: Escale[] = [
   ], photos: [{ image: borzgane, description: "Borzgane à l’agneau, servi avec des dattes et des fruits secs." }] },
   { id: "jendouba", nom: "Jendouba", specialites: ["Bsissa"],
     photos: [{ image: bsissaJendouba, description: "Bol de bsissa garni d’amandes, de noix et de pistaches." }] },
-  { id: "siliana", nom: "Siliana", specialites: [couscousAgneau, "Plats à base de céréales"] },
-  { id: "kasserine", nom: "Kasserine", specialites: [couscousAgneau, "Plats à base de semoule"] },
-  { id: "sidi-bouzid", nom: "Sidi Bouzid", specialites: ["Méchoui d’agneau", "Couscous traditionnel"] },
   { id: "gafsa", nom: "Gafsa", specialites: [
     mtabgaSpecialite, "Barkoukech",
   ], photos: [{ image: mtabga, description: "Galettes farcies de type mtabga, repliées et dorées à la poêle." }] },
   { id: "tozeur", nom: "Tozeur", specialites: ["Mdames"],
     photos: [{ image: mdamesTozeur, description: "Assiette de fèves avec du pain." }] },
-  { id: "nefta", nom: "Nefta", specialites: ["Chakhchoukha"] },
   { id: "kebili", nom: "Kébili", specialites: ["Pain cuit dans le sable"],
     photos: [{ image: painSableKebili, description: "Pain rond en train de cuire dans le sable près des braises." }] },
   { id: "gabes", nom: "Gabès", specialites: ["Chriha karmous"],

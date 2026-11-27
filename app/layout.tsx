@@ -2,6 +2,7 @@ import { Texte, NavigationTraduite, LangueProvider, SelecteurLangue } from "@/ap
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MenuCompte } from "./components/menu-compte";
+import { SelecteurAffichage } from "./components/affichage";
 import { SessionProvider } from "./components/session";
 import "./globals.css";
 import "./recettes.css";
@@ -27,10 +28,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 <Link href="/tour-de-tunisie"><Texte>Tour de Tunisie</Texte></Link>
                 <Link href="/frigo"><Texte>Mon frigo</Texte></Link>
                 <Link href="/courses"><Texte>Mes courses</Texte></Link>
+                <Link href="/ingredients"><Texte>Guide de l’étranger</Texte></Link>
+                <Link href="/nutrition"><Texte>Nutrition</Texte></Link>
                 <Link href="/contact"><Texte>Contact</Texte></Link>
                 <MenuCompte />
               </NavigationTraduite>
-              <SelecteurLangue />
+              <div className="preferences-site"><SelecteurLangue /><SelecteurAffichage /></div>
             </div>
           </header>
           {children}

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { AjoutCourses } from "../../components/ajout-courses";
 import { useSessionUser } from "../../components/session";
 import { recettes } from "../../data/recettes";
 import { favoris, modifierFavori } from "../../lib/favoris";
@@ -63,6 +64,8 @@ function ListeFavoris({ userId }: { userId: string }) {
         </div>
       )}
       {liste && liste.length > 0 && (
+        <>
+        <AjoutCourses recettes={liste} label="Ajouter ces favoris à mes courses" />
         <ul className="grille-favoris">
           {liste.map((recette) => (
             <li key={recette.slug} className="favori-enregistre">
@@ -76,6 +79,7 @@ function ListeFavoris({ userId }: { userId: string }) {
             </li>
           ))}
         </ul>
+        </>
       )}
     </section>
   );

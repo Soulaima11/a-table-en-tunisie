@@ -38,7 +38,7 @@ export default function LoginPage() {
         setMessage(error.code === "email_not_confirmed"
           ? "Confirme ton adresse e-mail avant de te connecter."
           : error.code === "invalid_credentials"
-            ? "L’adresse e-mail ou le mot de passe est incorrect."
+            ? "L’adresse e-mail ou le mot de passe est incorrect. Vérifie ta saisie ou réinitialise ton mot de passe."
             : "La connexion a échoué. Réessaie dans un instant.");
         return;
       }
@@ -58,6 +58,7 @@ export default function LoginPage() {
         <p role="status">{user ? "Ouverture de ton compte…" : "Vérification de la session…"}</p>
       ) : (
         <form className="formulaire" method="post" onSubmit={connect}>
+          {message && <p className="erreur-formulaire" role="alert">{message}</p>}
           <label>
             Votre adresse e-mail
             <input name="email" type="email" autoComplete="username" required />
@@ -66,8 +67,8 @@ export default function LoginPage() {
             Votre mot de passe
             <input name="password" type="password" autoComplete="current-password" required />
           </label>
+          <p className="lien-compte"><Link href="/mot-de-passe-oublie">Mot de passe oublié ?</Link></p>
           <button type="submit" disabled={pending}>{pending ? "Connexion…" : "Se connecter"}</button>
-          <div role="status">{message}</div>
           <p className="lien-compte">Première visite ? <Link href="/inscription">Créer un compte</Link></p>
         </form>
       )}

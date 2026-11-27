@@ -21,6 +21,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <Link href="/" className="marque">À table <em>en Tunisie</em></Link>
               <nav aria-label="Navigation principale">
                 <Link href="/#recettes">Recettes</Link>
+                <Link href="/menus">Menus</Link>
+                <Link href="/tour-de-tunisie">Tour de Tunisie</Link>
+                <Link href="/frigo">Mon frigo</Link>
+                <Link href="/courses">Mes courses</Link>
                 <Link href="/contact">Contact</Link>
                 <MenuCompte />
               </nav>

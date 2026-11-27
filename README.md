@@ -34,3 +34,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Recettes de famille et liste de courses
+
+Les membres peuvent envoyer une proposition depuis `/compte/proposer`. Pour la relire, ouvre la table `messages_contact` dans le tableau de bord Supabase et repère les entrées dont le message commence par `[Recette de famille]`. Après validation éditoriale, ajoute la fiche au catalogue dans `app/data/specialites.ts`. Les propositions ne sont jamais publiées automatiquement.
+
+La liste de courses est enregistrée dans le navigateur. Les menus, les favoris et les fiches permettent d’y ajouter des ingrédients. Sur une fiche, la liste enregistre les quantités affichées au moment de l’ajout.

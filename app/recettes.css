@@ -166,6 +166,32 @@ button { cursor: pointer; }
 }
 .hero-plat img, .fiche-entete img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .hero-legende { display: flex; justify-content: space-between; gap: 1rem; padding: .65rem 1rem; font-family: var(--serif); }
+.liens-accueil { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; }
+.lien-editorial { color: var(--rouge); text-decoration: underline; text-underline-offset: .25em; font-weight: 650; }
+.menu-editorial {
+  padding-block: clamp(2rem, 5vw, 3.75rem);
+  border-block: 1px solid var(--bordure);
+  background: var(--blanc);
+}
+.introduction-menu {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: end;
+  gap: .75rem 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid var(--rouge);
+}
+.introduction-menu p { max-width: 36ch; color: var(--secondaire); }
+.grille-menu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; margin-top: 1.25rem; }
+.grille-menu a { display: block; height: 100%; padding-bottom: .8rem; border-bottom: 1px solid var(--bordure); }
+.grille-menu img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; margin-bottom: .75rem; border-radius: .25rem; }
+.grille-menu .surtitre { margin-bottom: .35rem; }
+.grille-menu h3 { font-size: clamp(1.3rem, 2.5vw, 1.85rem); }
+.grille-menu h3 span { color: var(--rouge); font: .95rem system-ui, sans-serif; }
+.grille-menu a:hover h3 { color: var(--rouge); text-decoration: underline; }
+@media (max-width: 620px) {
+  .introduction-menu, .grille-menu { grid-template-columns: 1fr; }
+}
 
 .collection {
   padding-block: clamp(2.25rem, 6vw, 4.5rem);
@@ -218,6 +244,17 @@ button { cursor: pointer; }
 .retour:hover { text-decoration: underline; }
 .fiche-entete img { border-radius: .55rem; }
 .fiche-entete-texte { grid-template-columns: minmax(0, 48rem); }
+.sommaire-fiche {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem 1.25rem;
+  margin-top: 1.75rem;
+  padding-block: .75rem;
+  border-block: 1px solid var(--bordure);
+}
+.sommaire-fiche a { color: var(--rouge); font-weight: 650; }
+.sommaire-fiche a:hover { text-decoration: underline; }
+.fiche-corps :is(h2, h3)[id] { scroll-margin-top: 1rem; }
 .infos { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
 .infos dt { color: var(--secondaire); font-size: .85rem; }
 .infos dd { font-weight: 700; }
@@ -306,6 +343,13 @@ button { cursor: pointer; }
 .formulaire button { justify-self: start; }
 .formulaire button:disabled { cursor: wait; opacity: .7; }
 .lien-compte a { color: var(--rouge); font-weight: 650; text-decoration: underline; }
+.erreur-formulaire {
+  padding: .7rem .85rem;
+  border-inline-start: .2rem solid var(--rouge);
+  border-radius: .2rem;
+  background: #f9e8e2;
+  color: var(--rouge-fonce);
+}
 .dialogue-compte {
   width: min(100% - 2rem, 29rem);
   margin: auto;
@@ -324,4 +368,46 @@ button { cursor: pointer; }
 @media (max-width: 760px) {
   .hero, .fiche-entete, .fiche-corps { grid-template-columns: 1fr; }
   .hero-texte h1 { max-width: 14ch; }
+}
+
+
+.page-outil { padding-block: clamp(2rem, 5vw, 4rem); }
+.page-outil > h1 { max-width: 20ch; margin-bottom: .8rem; font-size: clamp(2.5rem, 6vw, 4.6rem); }
+.page-outil > p { max-width: 65ch; color: var(--secondaire); }
+.bloc-decouverte, .region-decouverte { scroll-margin-top: 1rem; }
+.bloc-decouverte { padding-block: 1.75rem; border-bottom: 1px solid var(--bordure); }
+.bloc-decouverte > p, .region-decouverte > p:not(.surtitre) { margin-block: .5rem 1rem; color: var(--secondaire); }
+.cartes-decouverte, .grille-regions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.grille-regions { margin-top: 1.5rem; }
+.region-decouverte { padding: clamp(.9rem, 2vw, 1.3rem); border: 1px solid var(--bordure); border-radius: .6rem; background: var(--blanc); }
+.region-decouverte h2 { font-size: clamp(1.6rem, 3vw, 2.25rem); }
+.fiche-decouverte { display: block; overflow: hidden; height: 100%; border: 1px solid var(--bordure); border-radius: .5rem; background: var(--blanc); }
+.fiche-decouverte img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.fiche-decouverte > span { display: block; padding: .65rem .85rem; font-weight: 700; }
+.fiche-decouverte:hover > span { color: var(--rouge); text-decoration: underline; }
+.source-region { display: inline-block; margin-top: .8rem; font-size: .85rem; }
+.ajout-courses { margin-top: .85rem; }
+.grille-favoris { margin-top: .75rem; }
+.statut-favori a { color: var(--rouge); text-decoration: underline; }
+.portions, .minuteur-cuisine { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem; }
+.portions { margin-bottom: .55rem; }
+.portions output { font-weight: 700; }
+.groupes-courses { display: grid; gap: 1rem; max-width: 48rem; margin-top: 1rem; }
+.groupes-courses h2, .suggestions-frigo h2 { font-size: 1.5rem; }
+.groupes-courses .bouton-favori { margin-top: .65rem; }
+.outils-frigo { display: grid; gap: 1rem; margin-block: 1.25rem; }
+.outils-frigo .recherche { width: min(100%, 28rem); }
+.suggestions-frigo { margin-top: 1rem; }
+.suggestions-frigo summary { margin-block: .5rem; cursor: pointer; font-weight: 650; }
+.suggestions-frigo details ul { list-style: disc; padding-left: 1.25rem; }
+.proposition-recette { max-width: 44rem; }
+.proposition-recette > p { margin-block: .55rem 1rem; }
+.onglets-compte { flex-wrap: wrap; }
+.sommaire-fiche { align-items: center; }
+.mode-cuisine { width: min(100% - 2rem, 43rem); }
+.etape-cuisine { font-size: clamp(1.15rem, 3vw, 1.6rem); line-height: 1.55; }
+.minuteur-cuisine { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--bordure); }
+.minuteur-cuisine input { width: 4rem; margin-inline: .5rem .2rem; padding: .25rem; border: 1px solid var(--bordure); border-radius: .25rem; }
+@media (max-width: 700px) {
+  .cartes-decouverte, .grille-regions { grid-template-columns: 1fr; }
 }

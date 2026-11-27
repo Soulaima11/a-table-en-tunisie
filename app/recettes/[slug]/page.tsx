@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BoutonFavori } from "../../components/bouton-favori";
+import { IngredientsRecette } from "../../components/ingredients-recette";
+import { ModeCuisine } from "../../components/mode-cuisine";
 import { formatDuree, recettes } from "../../data/recettes";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -42,15 +44,14 @@ export default async function RecettePage({ params }: Props) {
             <Image src={recette.image} alt={recette.imageAlt ?? recette.title} sizes="(max-width: 760px) 92vw, 50vw" unoptimized />
           )}
         </header>
+        <nav className="sommaire-fiche" aria-label="Dans cette recette">
+          <a href="#titre-ingredients">Ingrédients</a>
+          <a href="#titre-preparation">Préparation</a>
+          {recette.tip && <a href="#conseil-recette">Conseil</a>}
+          <ModeCuisine etapes={recette.steps} />
+        </nav>
         <div className="fiche-corps">
-          <section className="ingredients" aria-labelledby="titre-ingredients">
-            <h2 id="titre-ingredients">Ingrédients</h2>
-            <ul>
-              {recette.ingredients.map((ingredient) => (
-                <li key={ingredient}><label><input type="checkbox" />{ingredient}</label></li>
-              ))}
-            </ul>
-          </section>
+          <IngredientsRecette recette={recette} />
           <section aria-labelledby="titre-preparation">
             <h2 id="titre-preparation">Préparation</h2>
             <ol className="etapes">
@@ -58,7 +59,7 @@ export default async function RecettePage({ params }: Props) {
             </ol>
             {recette.tip && (
               <aside className="conseil-recette">
-                <h3>Conseil de préparation</h3>
+                <h3 id="conseil-recette">Conseil de préparation</h3>
                 <p>{recette.tip}</p>
               </aside>
             )}

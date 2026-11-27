@@ -5,6 +5,7 @@ import chrihaKarmous from "../../public/tour/chriha-karmous.webp";
 import couscousMedenine from "../../public/tour/couscous-medenine.webp";
 import couscousPoulpe from "../../public/tour/couscous-poulpe.webp";
 import couscousPoissonSfax from "../../public/tour/couscous-poisson-sfax.webp";
+import fruitsDeMerSousse from "../../public/tour/fruits-de-mer-sousse.webp";
 import garnGhzel from "../../public/tour/garn-ghzel.webp";
 import kaakWarka from "../../public/tour/kaak-warka.webp";
 import kaftejiKairouan from "../../public/tour/kafteji-kairouan.webp";
@@ -46,7 +47,8 @@ export const escales: Escale[] = [
     { image: mlabesSfax, description: "Mlabes roses et blancs sur un plateau.", legende: "Mlabes" },
     { image: couscousPoissonSfax, description: "Couscous au poisson avec des pois chiches et des piments verts.", legende: poisson },
   ] },
-  { id: "sousse", nom: "Sousse", specialites: [poisson, "Plats de fruits de mer"] },
+  { id: "sousse", nom: "Sousse", specialites: ["Plat de fruits de mer"],
+    photos: [{ image: fruitsDeMerSousse, description: "Assiette de moules, de crevettes et de poulpe grillé." }] },
   { id: "monastir", nom: "Monastir", specialites: ["Couscous au charkaw", "Poissons grillés"] },
   { id: "mahdia", nom: "Mahdia", specialites: [poisson, "Poissons et fruits de mer"] },
   { id: "bizerte", nom: "Bizerte", specialites: [lablabi, "Sandwich lablabi"],

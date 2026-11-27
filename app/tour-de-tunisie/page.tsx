@@ -1,25 +1,39 @@
 import type { Metadata } from "next";
-import { FicheDecouverte } from "../components/fiche-decouverte";
-import { recettesPour, regions } from "../data/decouvertes";
+import Image from "next/image";
+import Link from "next/link";
+import { escales } from "../data/tour-tunisie";
 
-export const metadata: Metadata = { title: "Tour de Tunisie en recettes" };
+export const metadata: Metadata = {
+  title: "Tour de Tunisie en recettes",
+  description: "Découvre les spécialités tunisiennes de Kairouan, Djerba, Sfax et de nombreuses autres villes.",
+};
 
 export default function TourPage() {
   return (
     <main id="contenu" className="conteneur page-outil">
       <h1>Tour de Tunisie en recettes</h1>
-      <p>Trois escales pour découvrir le riz djerbien, le kaâk warka de Zaghouan et le makroudh de Kairouan.</p>
-      <nav className="sommaire-fiche" aria-label="Les escales">
-        {regions.map((region) => <a href={`#${region.id}`} key={region.id}>{region.nom}</a>)}
+      <p>{escales.length} escales culinaires, du makroudh de Kairouan au couscous au poulpe de Kerkennah.</p>
+      <nav className="sommaire-fiche index-escales" aria-label="Choisir une escale">
+        {escales.map(({ id, nom }) => <a href={`#${id}`} key={id}>{nom}</a>)}
       </nav>
       <div className="grille-regions">
-        {regions.map((region) => (
-          <section className="region-decouverte" id={region.id} key={region.id}>
-            <p className="surtitre">{region.nom}</p>
-            <h2>{region.titre}</h2>
-            <p>{region.texte}</p>
-            {recettesPour(region.recettes).map((recette) => <FicheDecouverte key={recette.slug} recette={recette} />)}
-            <a className="lien-editorial source-region" href={region.source}>Source sur cette spécialité</a>
+        {escales.map(({ id, nom, specialites, photo, source, texte }) => (
+          <section className="region-decouverte" id={id} key={id} aria-labelledby={`escale-${id}`}>
+            <h2 id={`escale-${id}`}>{nom}</h2>
+            {photo && (
+              <Image className="photo-escale" src={photo.image} alt={photo.description} sizes="(max-width: 700px) 90vw, 33vw" />
+            )}
+            <ul className="specialites-escale">
+              {specialites.map((specialite) => (
+                <li key={specialite.nom}>
+                  {specialite.recette ? (
+                    <Link className="lien-editorial" href={`/recettes/${specialite.recette}`}>{specialite.nom}</Link>
+                  ) : specialite.nom}
+                </li>
+              ))}
+            </ul>
+            {texte && <p className="texte-escale">{texte}</p>}
+            {source && <a className="lien-editorial source-region" href={source.url}>{source.nom}</a>}
           </section>
         ))}
       </div>

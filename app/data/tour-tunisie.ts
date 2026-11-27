@@ -8,6 +8,7 @@ import couscousPoulpe from "../../public/tour/couscous-poulpe.webp";
 import garnGhzel from "../../public/tour/garn-ghzel.webp";
 import kaakWarka from "../../public/tour/kaak-warka.webp";
 import kaftejiKairouan from "../../public/tour/kafteji-kairouan.webp";
+import madmouja from "../../public/tour/madmouja.webp";
 import makroudhKairouan from "../../public/tour/makroudh-kairouan.webp";
 import mtabga from "../../public/tour/mtabga.webp";
 import rouzJerbi from "../../public/tour/rouz-jerbi.webp";
@@ -35,9 +36,8 @@ export const escales: Escale[] = [
     { image: makroudhKairouan, description: "Makroudh aux dattes sur un plateau.", legende: "Makroudh aux dattes" },
     { image: kaftejiKairouan, description: "Sandwich au kafteji servi avec des frites.", legende: "Kafteji de Kairouan" },
   ] },
-  { id: "tunis", nom: "Tunis", specialites: [
-    lablabi, "Fricassé", "Tajine tunisien", "Madmouja",
-  ] },
+  { id: "tunis", nom: "Tunis", specialites: ["Madmouja"],
+    photos: [{ image: madmouja, description: "Madmouja décorée de dattes et de pistaches." }] },
   { id: "sidi-bou-said", nom: "Sidi Bou Saïd", specialites: [
     "Bambalouni",
   ], photos: [{ image: bambalouni, description: "Deux bambalounis saupoudrés de sucre dans du papier." }] },

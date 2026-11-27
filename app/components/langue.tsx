@@ -4,6 +4,7 @@ import { cloneElement, createContext, useContext, useEffect, useSyncExternalStor
 import { estLangue, langues, nomsLangues, type Langue } from "../lib/langues";
 import en from "../i18n/en.json";
 import ar from "../i18n/ar.json";
+import { useSessionUser } from "./session";
 
 const dictionnaires: Record<Exclude<Langue, "fr">, Record<string, string>> = { en, ar };
 const cle = "table-tunisie-langue";
@@ -16,11 +17,11 @@ const avecQuantites = Object.fromEntries(Object.entries(dictionnaires).map(([lan
     .map(([source, cible]) => [source.replace(quantite, "#"), cible])),
 ]));
 
-function lireLangue(): Langue {
+function lireLangue(): Langue | null {
   try {
     const valeur = localStorage.getItem(cle);
-    return estLangue(valeur) ? valeur : "fr";
-  } catch { return "fr"; }
+    return estLangue(valeur) ? valeur : null;
+  } catch { return null; }
 }
 
 function ecouterLangue(callback: () => void) {
@@ -40,7 +41,9 @@ export function choisirLangue(langue: Langue) {
 }
 
 export function LangueProvider({ children }: { children: ReactNode }) {
-  const langue = useSyncExternalStore(ecouterLangue, lireLangue, () => "fr" as Langue);
+  const locale = useSyncExternalStore(ecouterLangue, lireLangue, () => null);
+  const preference = useSessionUser()?.user_metadata.langue_preferee;
+  const langue = locale ?? (estLangue(preference) ? preference : "fr");
   useEffect(() => {
     document.documentElement.lang = langue;
     document.documentElement.dir = langue === "ar" ? "rtl" : "ltr";

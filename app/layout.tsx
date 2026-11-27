@@ -29,8 +29,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 <Link href="/courses"><Texte>Mes courses</Texte></Link>
                 <Link href="/contact"><Texte>Contact</Texte></Link>
                 <MenuCompte />
-                <SelecteurLangue />
               </nav></AttributsTraduits>
+              <SelecteurLangue />
             </div>
           </header>
           {children}

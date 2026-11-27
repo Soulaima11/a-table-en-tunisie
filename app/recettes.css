@@ -100,7 +100,8 @@ button { cursor: pointer; }
 .menu-compte-panneau {
   position: absolute;
   z-index: 3;
-  inset: calc(100% + .5rem) 0 auto auto;
+  inset-block-start: calc(100% + .5rem);
+  inset-inline-end: 0;
   display: grid;
   gap: .15rem;
   width: 12rem;
@@ -113,7 +114,7 @@ button { cursor: pointer; }
 .menu-compte-panneau a, .menu-compte-panneau button {
   padding: .55rem .65rem;
   border-radius: .25rem;
-  text-align: left;
+  text-align: start;
   font-size: .9rem;
 }
 .menu-compte-panneau button { color: var(--rouge); font-weight: 650; }
@@ -419,10 +420,31 @@ button { cursor: pointer; }
   .cartes-decouverte, .grille-regions { grid-template-columns: 1fr; }
 }
 
+.barre-site .barre-interieure {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "marque navigation langue";
+  direction: ltr;
+}
+
+.barre-site .marque { grid-area: marque; }
+.barre-site nav { grid-area: navigation; justify-content: end; }
+.selecteur-langue { grid-area: langue; justify-self: end; }
+html[dir="rtl"] .barre-site :is(.marque, nav, select) { direction: rtl; }
+
+@media (max-width: 800px) {
+  .barre-site .barre-interieure {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "marque langue" "navigation navigation";
+  }
+
+  .barre-site nav { justify-content: start; }
+}
+
 .selecteur-langue select {
   max-width: 9rem;
   padding: .35rem .5rem;
-  border: 1px solid var(--ligne);
+  border: 1px solid var(--bordure);
   border-radius: .35rem;
   color: inherit;
   background: var(--papier);
@@ -443,10 +465,55 @@ button { cursor: pointer; }
   min-height: 5.5rem;
   gap: .75rem;
   padding: .5rem;
-  border: 1px solid var(--ligne);
+  border: 1px solid var(--bordure);
   border-radius: .5rem;
   background: var(--papier);
 }
 
 .historique-recettes img { border-radius: .25rem; object-fit: cover; }
 .historique-recettes strong { display: block; }
+
+.formulaire-profil {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 38rem;
+  padding: clamp(1rem, 4vw, 2rem);
+  border: 1px solid var(--bordure);
+  border-radius: .6rem;
+  background: var(--papier);
+}
+
+.formulaire-profil fieldset { padding: 0; border: 0; min-inline-size: 0; }
+.formulaire-profil legend, .formulaire-profil > label { font-weight: 650; }
+.formulaire-profil > label { display: grid; gap: .35rem; }
+.formulaire-profil :is(textarea, select) {
+  padding: .6rem;
+  border: 1px solid var(--bordure);
+  border-radius: .35rem;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+}
+
+.formulaire-profil textarea { resize: vertical; font-weight: 400; }
+.formulaire-profil small { text-align: end; font-weight: 400; }
+.formulaire-profil > button { justify-self: start; }
+.formulaire-profil [role="alert"] { color: var(--rouge); }
+.formulaire-profil :is([role="alert"], [role="status"]) { margin: 0; }
+.photo-profil { display: flex; align-items: center; flex-wrap: wrap; gap: .8rem; margin-block-start: .6rem; }
+.photo-profil .avatar-compte { width: 4.5rem; height: 4.5rem; font-size: 1.7rem; }
+.avatar-compte img { width: 100%; height: 100%; border-radius: inherit; object-fit: cover; }
+.photo-profil > div { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.bouton-photo, .photo-profil button {
+  position: relative;
+  padding: .4rem .6rem;
+  border: 1px solid var(--bordure);
+  border-radius: .35rem;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.bouton-photo input { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; }
+.bouton-photo:focus-within { outline: 2px solid currentColor; outline-offset: 2px; }

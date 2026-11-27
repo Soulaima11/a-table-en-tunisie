@@ -1,10 +1,12 @@
 "use client";
 
 import { Texte } from "@/app/components/langue";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { getSupabase } from "../lib/supabase";
+import { avatarValide } from "../lib/avatar";
 import { useSessionUser } from "./session";
 
 export function MenuCompte() {
@@ -57,10 +59,15 @@ export function MenuCompte() {
       }}
     >
       <summary>
-        <span className="avatar-compte" aria-hidden="true">{user.email?.charAt(0).toLocaleUpperCase("fr") || "?"}</span><Texte>Mon compte</Texte><span className="chevron-compte" aria-hidden="true" />
+        <span className="avatar-compte" aria-hidden="true">
+          {avatarValide(user.user_metadata.avatar_profil) ?
+            <Image src={user.user_metadata.avatar_profil} alt="" width={32} height={32} unoptimized /> :
+            user.email?.charAt(0).toLocaleUpperCase("fr") || "?"}
+        </span><Texte>Mon compte</Texte><span className="chevron-compte" aria-hidden="true" />
       </summary>
       <div className="menu-compte-panneau">
         <Link href="/compte" onClick={() => { if (menu.current) menu.current.open = false; }}><Texte>Voir mon compte</Texte></Link>
+        <Link href="/compte/profil" onClick={() => { if (menu.current) menu.current.open = false; }}><Texte>Profil personnel</Texte></Link>
         <button type="button" onClick={deconnecter} disabled={pending}>
           <Texte>{pending ? "Déconnexion…" : "Se déconnecter"}</Texte>
         </button>
